@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 
 // 👇 JUST THIS LINE CHANGED 👇
-const API = "https://dharshan2005711--aass-safety-supervisor-serve-fastapi.modal.run";
+const API = import.meta.env.VITE_API_URL || "https://dharshan2005711--aass-safety-supervisor-serve-fastapi.modal.run";
 
 export default function App() {
   const [frame, setFrame] = useState(null);
