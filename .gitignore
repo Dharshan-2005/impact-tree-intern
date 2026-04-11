@@ -1,0 +1,19 @@
+# Virtual Environments
+venv/
+env/
+
+# Security (NEVER upload API keys)
+.env
+
+# Temporary Backend Media
+backend/temp_images/
+backend/temp_videos/
+
+# Large Datasets
+models/PPE-Detection-1/train/
+models/PPE-Detection-1/valid/
+models/PPE-Detection-1/test/
+
+# Python Cache files (clutter)
+__pycache__/
+*.pyc
