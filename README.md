@@ -1,46 +1,56 @@
-# AI-Powered Autonomous Safety Supervisor (AASS)
+# 🛡️ AI-Powered Autonomous Safety Supervisor (AASS)
 
-## 📌 Project Overview
-[cite_start]The AI-Powered Autonomous Safety Supervisor (AASS) is an intelligent vision system designed to transform passive security cameras into active safety participants[cite: 11]. [cite_start]Operating within the Industrial Health, Safety, and Environment (HSE) domain [cite: 14][cite_start], this system utilizes Contextual Spatial Reasoning and Kinematic Analysis to ensure total safety compliance[cite: 12]. 
+[cite_start]An intelligent real-time industrial safety monitoring system that transforms passive CCTV feeds into active safety supervision using AI[cite: 11].
 
-[cite_start]AASS acts as a digital supervisor, moving beyond simple object detection to understand *where* workers are and *how* they are moving [cite: 12][cite_start], directly addressing critical flaws in traditional oversight: Context Blindness (Alert Fatigue), Invisible Risks (ergonomic injuries), and Delayed Emergency Response[cite: 16, 17, 18, 19].
+---
 
-## 🚀 Key Features
-* [cite_start]**Context-Aware PPE Verification:** Utilizes hierarchical logic to isolate specific body zones (Head, Hands, Feet) and dynamically adjusts compliance requirements based on the worker's specific zone (e.g., Welding Cell vs. Loading Bay)[cite: 21, 22, 23].
-* [cite_start]**Dynamic Virtual Geofencing:** Employs virtual 'Red Zones' monitored 24/7[cite: 25]. [cite_start]Interaction logic calculates the distance between moving machinery and workers, triggering immediate alerts for Danger Radius breaches[cite: 26, 27].
-* [cite_start]**Predictive Kinematic Safety:** Features an "Ergonomic Guardrail" that monitors spinal and joint angles to flag high-risk lifting postures[cite: 29, 30]. [cite_start]Advanced fall analysis distinguishes between intentional movements (kneeling) and genuine slip-and-fall accidents[cite: 31].
+## 🚀 Project Overview
 
-## 🛠️ Tech Stack
-* **Computer Vision & AI:** * YOLOv8 (Custom-trained for PPE & Hazard Detection)
-  * Pose Estimation (Kinematic analysis & Ergonomic tracking)
-  * Moondream2 VLM (Context-aware spatial reasoning)
-* **Backend & Processing:** Python, Custom Risk-Scoring Engine
-* **Frontend:** React.js dashboard with real-time NDJSON frame streaming
-* **Cloud Deployment:** Modal (Backend GPU Inference), Netlify (Frontend UI)
+[cite_start]The AI-Powered Autonomous Safety Supervisor (AASS) is designed to improve workplace safety in industrial environments by detecting PPE compliance violations, dangerous proximity to machinery, and context-aware safety requirements[cite: 14]. 
 
-## 📊 Dataset Details & Model Training
-[cite_start]The AASS model was trained entirely from scratch using a custom dataset[cite: 33]. 
+[cite_start]Unlike traditional systems, AASS uses contextual reasoning and computer vision to reduce false alerts and improve real-world reliability[cite: 12].
 
-* [cite_start]**Dataset Source:** Curated and aggregated from Roboflow and Open Images[cite: 39], focusing on diverse industrial environments, varying lighting conditions, and specific PPE classes.
-* [cite_start]**Architecture:** State-of-the-art YOLOv8 architecture optimized for real-time edge/cloud inference[cite: 40].
-* **Training Process:** The model underwent multi-stage training focusing first on generalized person detection, followed by fine-tuning on localized PPE elements (helmets, vests, boots) and hazardous interactions. 
+---
 
-### Model Performance Scores
-* **mAP (Mean Average Precision):** [Enter Score, e.g., 0.88]
-* **Precision:** [Enter Score, e.g., 0.91]
-* **Recall:** [Enter Score, e.g., 0.85]
-* **F1-Score:** [Enter Score, e.g., 0.88]
+## 🎯 Problem Statement
 
-## ⚙️ Requirements & Local Setup Instructions
+Industrial safety systems face major challenges:
+* [cite_start]❌ **Context blindness:** Alerts everywhere leading to alert fatigue[cite: 17].
+* [cite_start]❌ **Invisible Risks:** Inability to detect near-miss incidents[cite: 18].
+* [cite_start]❌ **Delayed Response:** Slow reactions to safety violations or man-down incidents[cite: 19].
 
-### Prerequisites
-* Python 3.10+
-* Node.js & npm (for React UI)
-* Git
+This project solves these using a hybrid AI approach.
 
-### Step-by-Step Installation
+---
 
-**1. Clone the Repository**
-```bash
-git clone [https://github.com/yourusername/AASS-Safety-Supervisor.git](https://github.com/yourusername/AASS-Safety-Supervisor.git)
-cd AASS-Safety-Supervisor
+## 🔥 Key Features
+
+* **✅ Context-Aware PPE Verification:** Uses a Vision-Language Model (VLM) to dynamically determine required PPE. [cite_start]Detects Helmets, Gloves, Goggles, and Safety Vests[cite: 21, 23].
+* [cite_start]**⚠️ Dynamic Machine Proximity Detection:** Detects machinery (cars, trucks, etc.), calculates the distance between worker and machine, and triggers immediate alerts when a worker enters a danger radius[cite: 26, 27].
+* **🧠 Hybrid AI Pipeline:** Utilizes VLM (Gemini) for scene understanding every 300 frames, YOLOv8 for PPE and machine detection, YOLOv8-Pose for worker detection, and a Custom Risk Engine for safety scoring.
+* **📡 Real-Time Streaming System:** The backend streams processed frames using NDJSON, while the frontend renders a live annotated video feed.
+
+---
+
+## 🏗️ System Architecture
+
+```text
+Input Video/Image
+        │
+        ▼
+Frame Processing Pipeline
+        │
+        ├── VLM (every 300 frames)
+        │     └── Scene + PPE Requirements
+        │
+        ├── YOLO Models
+        │     ├── PPE Detection
+        │     ├── Machine Detection
+        │     └── Pose Estimation
+        │
+        └── Risk Scoring Engine
+              ├── Missing PPE
+              └── Machine Proximity
+        │
+        ▼
+Streaming Output (Frontend UI)
